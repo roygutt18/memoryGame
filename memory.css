@@ -1,0 +1,169 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== ROOT ===== */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+  min-height: 100vh;
+}
+
+/* ===== APP LAYOUT ===== */
+.app {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-size: 0.95rem;
+}
+
+/* ===== GAME AREA ===== */
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  aspect-ratio: 1 / 1;
+}
+
+/*
+  JS controls:
+  grid-template-columns: repeat(n, 1fr);
+*/
+
+/* ===== CELL ===== */
+.cell {
+  background: #e2e8f0;
+  border-radius: 14px;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.cell:active {
+  transform: scale(0.97);
+}
+
+/* ===== STATES ===== */
+.cell.hidden {
+  background: #e2e8f0;
+}
+
+.cell.revealed {
+  background: #93c5fd;
+  transform: translateY(-5px);
+}
+
+.cell.selected {
+  background: #fde68a;
+}
+
+.cell.correct {
+  background: #86efac;
+}
+
+.cell.wrong {
+  background: #fca5a5;
+}
+
+.cell.locked {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.footer button:active {
+  background: #1d4ed8;
+}
+
+/* ===== TABLET+ ===== */
+@media (min-width: 768px) {
+  .app {
+    max-width: 480px;
+  }
+
+  .grid {
+    gap: 12px;
+  }
+}
+
+.toast {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: #2563eb;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
