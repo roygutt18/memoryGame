@@ -135,18 +135,18 @@ function nextLevelSetUp() {
     gameState.maxPreview + 1,
     gameState.totalCells - 1
   );
+  gameState.minPreview = Math.min(
+    gameState.minPreview + 0.25,
+    gameState.maxPreview - 1
+  );
 
-  if (gameState.level % 3 === 0) {
-    gameState.gridSize += 1;
-    gameState.totalCells = gameState.gridSize * gameState.gridSize;
-  }
-  if (gameState.gridSize === 5) {
-    gameState.gridSize = 5;
-    gameState.totalCells = gameState.gridSize * gameState.gridSize;
+
+  if (gameState.level % 3 === 0 && gameState.gridSize < 5) {
+  gameState.gridSize += 1;
+  gameState.totalCells = gameState.gridSize * gameState.gridSize;
   }
 
   gameState.previewTime = Math.max(500, gameState.previewTime - 80);
-
 }
 
 function nextLevel() {
